@@ -1,0 +1,51 @@
+version: '3.3'
+
+services:
+  database:
+    container_name: ecobee2Tandem-database
+    image: mongo:latest
+    volumes:
+      - ecobee2Tandem-database:/data/db
+    restart: always
+    environment: 
+      - MONGO_INITDB_DATABASE=ecobee2Tandem
+    networks:
+      - ecobee2Tandem
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+      args: 
+        ECOBEE_APIKEY: 
+        ECOBEE_AUTHCODE: 
+        ECOBEE_DEVICENAME: 
+        TANDEM_ENDPOINT: 
+        UPDATEINTERVAL: 60000
+        INIT_REFRESH: 
+        TANDEM_INGESTION_PASSWORD: 
+    container_name: ecobee2Tandem-server
+    volumes:
+      - ecobee2Tandem-server:/var/www/html/ecoBee2Tandem/
+    restart: "no"
+    working_dir: /var/www/html/ecoBee2Tandem
+    stdin_open: true
+    environment:
+      - SHELL=/bin/ash
+    networks:
+      - ecobee2Tandem
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+
+networks:
+  ecobee2Tandem:
+    driver: bridge
+    
+volumes:
+  ecobee2Tandem-database:
+  ecobee2Tandem-server:
