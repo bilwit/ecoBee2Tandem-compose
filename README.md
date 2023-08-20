@@ -1,5 +1,5 @@
 # ecoBee2Tandem-compose
-Compose deployment for ecoBee2Tandem https://github.com/bilwit/ecoBee2Tandem 
+Docker Compose deployment for ecoBee2Tandem https://github.com/bilwit/ecoBee2Tandem 
 
 ## Description
 Request temperature data from a single ecobee device and send it to a Tandem stream sensor at regular intervals.
