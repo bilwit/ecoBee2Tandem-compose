@@ -1,8 +1,8 @@
 # ecoBee2Tandem-compose
-Composes deployment for ecoBee2Tandem
+Compose deployment for ecoBee2Tandem
 
 ## Description
-Request temperature data from a single ecobee device and send it to a Tandem stream sensor in regular intervals.
+Request temperature data from a single ecobee device and send it to a Tandem stream sensor at regular intervals.
 
 ## Required Environment Variables
 - ECOBEE_APIKEY
